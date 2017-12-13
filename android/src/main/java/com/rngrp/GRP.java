@@ -17,11 +17,16 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.Promise;
 
 public class GRP extends ReactContextBaseJavaModule {
 
+  static ReactApplicationContext RCTContext;
+
   public GRP(ReactApplicationContext reactContext) {
     super(reactContext);
+
+    RCTContext = reactContext;
   }
 
   @Override
@@ -33,6 +38,15 @@ public class GRP extends ReactContextBaseJavaModule {
     WritableMap error = Arguments.createMap();
     error.putString("message", ex.getMessage());
     return error;
+  }
+
+  @ReactMethod
+  public void getRealPath(String uriString, Callback callback) {
+    Uri uri = Uri.parse(uriString);
+    
+    String path = PathResolver.getRealPathFromURI(RCTContext, uri);
+    
+    callback.invoke(null, path);
   }
 
   @ReactMethod
