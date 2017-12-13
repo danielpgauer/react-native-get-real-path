@@ -8,7 +8,7 @@ Currently No Support
 
 ## Installation (Android)
 
-`npm i react-native-get-real-path@https://github.com/Wraptime/react-native-get-real-path.git --save`
+`npm i react-native-get-real-path@https://github.com/danielpgauer/react-native-get-real-path.git --save`
 
 Make alterations to the following files:
 
@@ -55,19 +55,4 @@ RNGRP.getRealPath(fileUri).then(filePath =>
   console.log(filePath)
 )
 ```
-
-## Use Case - get images from CameraRoll as base64
-
-  * Required: react-native-fs
-    https://github.com/johanneslumpe/react-native-fs
-
-```javascript
-RNGRP.getRealPathFromURI(imageUri).then(path =>
-  RNFS.readFile(path, 'base64').then(imageBase64 =>
-    console.log(imageBase64)
-  )
-)
-```
-
-  * For iOS you can checkout: https://github.com/scottdixon/react-native-upload-from-camera-roll/
 
